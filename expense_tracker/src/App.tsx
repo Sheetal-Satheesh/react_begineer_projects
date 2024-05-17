@@ -3,8 +3,6 @@ import ExpenseList from "./expense-tracker/components/ExpenseList";
 import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 
-export const categories = ["Groceries", "Utilities", "Entertainment"];
-
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState([
@@ -18,8 +16,8 @@ function App() {
     ? expenses.filter((e) => e.category === selectedCategory)
     : expenses;
   return (
-    <div>
-      <div className="mb-5">
+    <div className="flex justify-content-center">
+      <div className="mb-5 flex-row">
         <ExpenseForm />
       </div>
       <div className="mb-3">
