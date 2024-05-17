@@ -4,6 +4,10 @@ import categories from "../categories";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+interface onSubmitProp {
+  onSubmit: (data: ExpenseFormData) => void;
+}
+
 const schema = z.object({
   description: z.string().min(3, { message: "Minimum Length 3" }).max(50),
   amount: z
@@ -17,14 +21,19 @@ const schema = z.object({
 
 type ExpenseFormData = z.infer<typeof schema>;
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onSubmit }: onSubmitProp) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ExpenseFormData>({ resolver: zodResolver(schema) });
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data);
+        reset();
+      })}>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
           Description
