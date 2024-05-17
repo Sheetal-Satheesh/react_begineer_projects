@@ -1,0 +1,14 @@
+/* src/components/Calculator.css */
+
+.calculator {
+  margin-top: 50px;
+}
+
+.display {
+  font-size: 24px;
+}
+
+.result {
+  font-size: 32px;
+  font-weight: bold;
+}
